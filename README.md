@@ -17,7 +17,7 @@ task进程数可以根据需要多开一些，默认为10<br>
 5.demo站点：<a href="https://g.widora.cn">点我跳转</a><br>
 6.本程序基于<a href="https://www.workerman.net/">workerMan</a>编写<br>
 7.因本人平常工作繁忙，欢迎爱好者帮忙搭建docker，请联系本人放出仓库地址<br>
-8.如有问题，可联系本人qq：9496898
-9.另外，部署到香港、韩国、日本等非大陆的服务器的事情就不用我说了吧。推荐使用：<a href="https://www.vultr.com/?ref=8428612">www.vultr.com</a>日本服务器
+8.如有问题，可联系本人qq：9496898<br>
+9.另外，部署到香港、韩国、日本等非大陆的服务器的事情就不用我说了吧。推荐使用：<a href="https://www.vultr.com/?ref=8428612">www.vultr.com</a>日本服务器<br>
 10.如果不愿意搭建本服务，平常工作又有用到梯子的情况，推荐使用trojan节点：<a href="https://portal.shadowsocks.nl/aff.php?aff=32558">order.shadowsocks.nl</a>
 
