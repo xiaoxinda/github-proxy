@@ -1,4 +1,5 @@
 **（注:本程序为简单实现，因纯属业余时间编写，开发比较仓促，欢迎完善）**<br>
+**请遵循法律法规,不要用来做违法的事情**<br>
 1.staticweb目录您需要进行nginx配置为站点。<br>
 2.GatewayWorker下start_gateway中配置wss所需要的证书<br>
 `$context = array(`<br>
