@@ -1,9 +1,6 @@
 <?php
 use Workerman\Worker;
 use Workerman\Lib\Timer;
-
-// watch Applications catalogue
-
 // worker
 $webDirSource = dirname(dirname(dirname(__FILE__)));
 $worker = new Worker();
@@ -18,18 +15,6 @@ $worker->onWorkerStart = function()
 // check files func
 function check_files_remove($webDirSource)
 {
-//    $files = [];
-//    $dateTime = date("Ymd",strtotime("-1 day"));
-//    if(is_dir($webDirSource)) {
-//        if($files = scandir($webDirSource)) {
-//            $files = array_slice($files,2);
-//            foreach($files as $file) {
-//                if ($file < $dateTime) {
-//                    rmdir($webDirSource  . $file);
-//                }
-//            }
-//        }
-//    }
 
     $pdo = new PDO('sqlite:' . $webDirSource . '/sql');
     $data = $pdo->query("select * from file_info where addtime < '".(time() - 60*60*2+5)."'")->fetchAll();

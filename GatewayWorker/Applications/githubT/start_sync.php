@@ -42,7 +42,6 @@ $task_worker->onMessage = function ($connection, $task_data) use ($webDir,$datat
                 break;
         }
     }
-    //&& !preg_match("/^.*(?<=(\.gz|\.tar\.gz|\.bz2|\.tar|\.tar\.bz2|\.zip|\.tar\.xz|\.tar\.z|\.rpm|\.deb|\.rar))$/ix",$dataArr['url'])
     if (!preg_match("/^((https|http):\/\/)?([\w\.\/\-\_^]+?)\.(tar\.gz|gz|tar\.bz2|bz2|tar|zip|tar\.xz|tar\.z|rpm|deb|rar)$/iu",$dataArr['url'],$ext) && !preg_match("/^https:\/\/github.com\/([\w\/\-\.\_]+)$/iu", $dataArr['url'])
     ) {
         $connection->send(json_encode(["status" => 1, "msg" => "请输入正确的github地址：仅支持https协议 或<br> （gz|tar.gz|bz2|tar|tar.bz2|zip|tar.xz|tar.z|rpm|deb|rar）格式的压缩包下载链接"]) . "\r\n");
