@@ -22,3 +22,23 @@ task进程数可以根据需要多开一些，默认为10<br>
 9.另外，部署到香港、韩国、日本等非大陆的服务器的事情就不用我说了吧。推荐使用：<a href="https://www.vultr.com/?ref=8428612">www.vultr.com</a>日本服务器<br>
 10.如果您也搭建了此服务,我们可以互粉一下友情链接,组合成一个阵营,互粉群:<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=f65cb90612db81ef9bee771440adb40c004933a18b7c0466a279486936aedc79"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="G.widora.cn 互粉群" title="G.widora.cn 互粉群"></a>
 
+####nginx转发ws or wss示例
+ ```
+ upstream websocket {  
+     server 127.0.0.1:8848;  
+ }
+ server {
+     ...//...代表您的nginx其他配置
+     
+     location /wss {  
+         proxy_pass http://websocket;  
+         proxy_http_version 1.1;  
+         proxy_set_header Upgrade $http_upgrade;  
+         proxy_set_header Connection "Upgrade";  
+     } 
+     
+ }
+//配置完成后，修改 style/js/index.js中连接ws部分为：
+// __this.ws = new WebSocket("ws" + (ishttps ? "s": "") + "://" + document.domain + "/wss"); //nginx配置ssl做8848转发
+```
+

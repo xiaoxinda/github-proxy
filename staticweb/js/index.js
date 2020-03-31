@@ -5,7 +5,9 @@ var webSocketClick = {
     init:function(){
         var __this = this;
         __this.app_block = $(".app-block");
-        __this.ws = new WebSocket("wss://" + document.domain + ":8848");
+        var ishttps = 'https:' == document.location.protocol ? true: false;
+        __this.ws = new WebSocket("ws" + (ishttps ? "s": "") + "://" + document.domain + ":8848");
+        // __this.ws = new WebSocket("ws" + (ishttps ? "s": "") + "://" + document.domain + "/wss"); //nginx配置ssl做8848转发
         __this.ws.onopen = function(event){
             __this.onOpen(event)
         }
