@@ -42,7 +42,7 @@ $task_worker->onMessage = function ($connection, $task_data) use ($webDir,$datat
                 break;
         }
     }
-    if (!preg_match("/^((https|http):\/\/)?([\w\.\/\-\_^]+?)\.(tar\.gz|gz|tar\.bz2|bz2|tar|zip|tar\.xz|tar\.z|rpm|deb|rar)$/iu",$dataArr['url'],$ext) && !preg_match("/^https:\/\/github.com\/([\w\/\-\.\_]+)$/iu", $dataArr['url'])
+    if (!preg_match("/^((https|http):\/\/)?([\w\.\/\-\_^]+?)\.(tar\.gz|gz|tar\.bz2|exe|apk|bz2|tar|zip|tar\.xz|tar\.z|rpm|deb|rar)$/iu",$dataArr['url'],$ext) && !preg_match("/^https:\/\/github.com\/([\w\/\-\.\_]+)$/iu", $dataArr['url'])
     ) {
         $connection->send(json_encode(["status" => 1, "msg" => "请输入正确的github地址：仅支持https协议 或<br> （gz|tar.gz|bz2|tar|tar.bz2|zip|tar.xz|tar.z|rpm|deb|rar）格式的压缩包下载链接"]) . "\r\n");
         $connection->send("true");
@@ -72,6 +72,15 @@ $task_worker->onMessage = function ($connection, $task_data) use ($webDir,$datat
                 ]
             ], JSON_UNESCAPED_UNICODE) . "\r\n");
         if (!is_file($webDir . "/{$git_dir_path}.tar")) {
+            if(!is_dir($webDir."/".$git_dir_path)){
+                $connection->send(json_encode([
+                        'status' => 1,
+                        'msg' => "您输入的链接可能是不支持的后缀，如果是git仓储，请确认链接正确",
+                        'data' => []
+                    ], JSON_UNESCAPED_UNICODE) . "\r\n");
+                $connection->send("true");
+                return;
+            }
             system('cd ' . $webDir . ";tar -cvf {$git_dir_path}.tar {$git_dir_path} ");
             system("rm -rf " . $webDir . "/" . $git_dir_path);
         }

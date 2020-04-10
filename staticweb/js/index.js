@@ -47,6 +47,7 @@ var webSocketClick = {
             var data = JSON.parse(event.data)
             if (data.status == 1) {
                 layer.msg(data.msg);
+                setTimeout(function(){window.location.reload();},3000)
                 return false;
             }
             switch (data.data.sta) {
@@ -95,7 +96,7 @@ var webSocketClick = {
         var __this = this;
         var githubUrl = __this.app_block.find(".text");
         var githubUrlReg = new RegExp('^https:\\/\\/github.com\\/([\\w\\/\\d\\-\\_\\.]+)$','ig');
-        var githubUrlReg1 = new RegExp('^((https|http):\\/\\/)?([\\w\\.\\/\\-\\_^]+?)\\.([tar\\.gz|gz|tar\\.bz2|bz2|tar|zip|tar\\.xz|tar\\.z|rpm|deb|rar]+?)$','ig');
+        var githubUrlReg1 = new RegExp('^((https|http):\\/\\/)?([\\w\\.\\/\\-\\_^]+?)\\.([tar\\.gz|gz|tar\\.bz2|bz2|tar|zip|tar\\.xz|tar\\.z|rpm|deb|rar|apk|exe]+?)$','ig');
         if(!githubUrl.val()){
             layer.msg("请输入github地址");
             githubUrl.select();
