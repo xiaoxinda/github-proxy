@@ -41,4 +41,4 @@ task进程数可以根据需要多开一些，默认为10<br>
 //配置完成后，修改 style/js/index.js中连接ws部分为：
 // __this.ws = new WebSocket("ws" + (ishttps ? "s": "") + "://" + document.domain + "/wss"); //nginx配置ssl做8848转发
 ```
-
+<img border="0" width="400" src="http://www.liecun.com/7BE0D017A65299D1FBDAF48EDE86BAF5.jpg">
