@@ -42,7 +42,13 @@ $task_worker->onMessage = function ($connection, $task_data) use ($webDir,$datat
                 break;
         }
     }
-    if (!preg_match("/^((https|http):\/\/)?([\w\.\/\-\_^]+?)\.(tar\.gz|gz|tar\.bz2|exe|apk|bz2|tar|zip|tar\.xz|tar\.z|rpm|deb|rar)$/iu",$dataArr['url'],$ext) && !preg_match("/^https:\/\/github.com\/([\w\/\-\.\_]+)$/iu", $dataArr['url'])
+    if (preg_match("/%|\"|\.\.|\\\|\?|&|reboot|rm |mv |shutdown|<|>|sh |;|'/",$dataArr['url'])
+        ||
+        (
+            !preg_match("/^((https|http):\/\/)?([\w\.\s\S\/\-\_^]+?)\.(tar\.gz|gz|tgz|tar\.bz2|bz2|msi|tar|zip|tar\.xz|tar\.z|rpm|deb|exe|apk|dmg|7z|rar)$/iu",$dataArr['url'],$ext)
+            && !preg_match("/^https:\/\/github.com\/([\w\/\-\.\_]+)$/iu", $dataArr['url']
+            )
+        )
     ) {
         $connection->send(json_encode(["status" => 1, "msg" => "请输入正确的github地址：仅支持https协议 或<br> （gz|tar.gz|bz2|tar|tar.bz2|zip|tar.xz|tar.z|rpm|deb|rar）格式的压缩包下载链接"]) . "\r\n");
         $connection->send("true");
