@@ -38,7 +38,7 @@ class Events
      */
     public static function onConnect($client_id)
     {
-        // 向当前client_id发送数据 
+        // 向当前client_id发送数据
 //        Gateway::sendToClient($client_id, "Hello $client_id\r\n");
         // 向所有人发送
 //        Gateway::sendToAll("$client_id login\r\n");
@@ -58,15 +58,20 @@ class Events
 
             };
             $task_connection->onMessage = function ($task_connection, $data) use ($client_id) {
-                if($data == "true") {
+                if ($data == "true") {
                     $task_connection->close();
-                }else{
+                } else {
                     $data && Gateway::sendToClient($client_id, $data . "\r\n");
                 }
             };
             $task_connection->connect();
         } catch (\Throwable $e) {
-
+            print_r([
+                'message' => $e->getMessage(),
+                'code' => $e->getCode(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
         }
 
     }
