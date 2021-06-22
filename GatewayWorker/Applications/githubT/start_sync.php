@@ -42,7 +42,7 @@ $task_worker->onMessage = function ($connection, $task_data) use ($webDir, $data
     if (preg_match("/%|\"|\.\.|\\\|\?|\||`|&|reboot|rm |mv |shutdown|<|>|sh |;|'/", $dataArr['url'])
         ||
         (
-            !preg_match("/^((https|http):\/\/)?([\w\.\s\S\/\-\_^]+?)\.(tar\.gz|gz|tgz|tar\.bz2|bz2|msi|tar|zip|tar\.xz|tar\.z|rpm|deb|exe|apk|dmg|7z|rar)$/iu", $dataArr['url'], $ext)
+            !preg_match("/^((https|http):\/\/)?([\w\.\s\S\/\-\_^]+?)\.(tar\.gz|gz|tgz|tar\.bz2|bz2|msi|tar|zip|tar\.xz|tar\.z|rpm|deb|exe|apk|ipk|dmg|7z|rar)$/iu", $dataArr['url'], $ext)
             && !preg_match("/^https:\/\/github.com\/([\w\/\-\.\_]+)$/iu", $dataArr['url']
             )
         )
