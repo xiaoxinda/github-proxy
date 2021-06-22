@@ -96,7 +96,7 @@ var webSocketClick = {
         var __this = this;
         var githubUrl = __this.app_block.find(".text");
         var githubUrlReg = new RegExp('^https:\\/\\/github.com\\/([\\w\\/\\d\\-\\_\\.]+)$','ig');
-        var githubUrlReg1 = new RegExp('^((https|http):\\/\\/)?([\\w\\.\\/\\-\\_^]+?)\\.([tar\\.gz|gz|tar\\.bz2|bz2|tar|zip|tar\\.xz|tar\\.z|rpm|deb|rar|apk|exe]+?)$','ig');
+        var githubUrlReg1 = new RegExp('^((https|http):\\/\\/)?([\\w\\.\\/\\-\\_^]+?)\\.([tar\\.gz|gz|tar\\.bz2|bz2|tar|zip|ipk|tar\\.xz|tar\\.z|rpm|deb|rar|apk|exe]+?)$','ig');
         if(!githubUrl.val()){
             layer.msg("请输入github地址");
             githubUrl.select();
